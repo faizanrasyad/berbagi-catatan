@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:berbagi_catatan/pages/login.dart';
+import 'package:berbagi_catatan/resources/color.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -38,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
-                        color: const Color(0xFF508266)),
+                        color: Warna().green100),
                   ),
                 )
               ],

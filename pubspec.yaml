@@ -19,7 +19,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/berbagi-catatan-icon.png"
+  image_path: "lib/assets/icon.png"
 
 flutter:
   uses-material-design: true
