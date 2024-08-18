@@ -1,4 +1,5 @@
 import 'package:berbagi_catatan/pages/buat_catatan.dart';
+import 'package:berbagi_catatan/pages/cari_catatan.dart';
 import 'package:berbagi_catatan/pages/home.dart';
 import 'package:berbagi_catatan/pages/lihat_catatan.dart';
 import 'package:berbagi_catatan/pages/login.dart';
@@ -17,6 +18,7 @@ void main() {
       '/home': (context) => Home(),
       '/buat': (context) => BuatCatatan(),
       '/lihat': (context) => LihatCatatan(),
+      '/cari': (context) => CariCatatan()
     },
     debugShowCheckedModeBanner: false,
   ));
