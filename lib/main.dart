@@ -1,4 +1,6 @@
+import 'package:berbagi_catatan/pages/buat_catatan.dart';
 import 'package:berbagi_catatan/pages/home.dart';
+import 'package:berbagi_catatan/pages/lihat_catatan.dart';
 import 'package:berbagi_catatan/pages/login.dart';
 import 'package:berbagi_catatan/pages/register.dart';
 import 'package:berbagi_catatan/pages/splash_screen.dart';
@@ -12,7 +14,9 @@ void main() {
       '/': (context) => SplashScreen(),
       '/login': (context) => Login(),
       '/register': (context) => Register(),
-      '/home': (context) => Home()
+      '/home': (context) => Home(),
+      '/buat': (context) => BuatCatatan(),
+      '/lihat': (context) => LihatCatatan(),
     },
     debugShowCheckedModeBanner: false,
   ));
