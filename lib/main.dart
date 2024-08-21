@@ -17,7 +17,7 @@ void main() {
       '/register': (context) => Register(),
       '/home': (context) => Home(),
       '/buat': (context) => BuatCatatan(),
-      '/lihat': (context) => LihatCatatan(),
+      '/detail': (context) => DetailCatatan(),
       '/cari': (context) => CariCatatan()
     },
     debugShowCheckedModeBanner: false,

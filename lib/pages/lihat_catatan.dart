@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class LihatCatatan extends StatefulWidget {
-  const LihatCatatan({super.key});
+class DetailCatatan extends StatefulWidget {
+  const DetailCatatan({super.key});
 
   @override
-  State<LihatCatatan> createState() => _LihatCatatanState();
+  State<DetailCatatan> createState() => _DetailCatatanState();
 }
 
-class _LihatCatatanState extends State<LihatCatatan> {
+class _DetailCatatanState extends State<DetailCatatan> {
   @override
   Widget build(BuildContext context) {
     return const Placeholder();
