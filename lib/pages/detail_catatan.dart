@@ -118,6 +118,9 @@ class _DetailCatatanState extends State<DetailCatatan> {
                               style:
                                   TextStyle(color: Colors.grey, fontSize: 12),
                             ),
+                            const SizedBox(
+                              width: 16,
+                            ),
                             Text(
                               catatan.author,
                               overflow: TextOverflow.ellipsis,
