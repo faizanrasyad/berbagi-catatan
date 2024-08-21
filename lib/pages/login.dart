@@ -85,6 +85,7 @@ class _LoginState extends State<Login> {
                                   if (value.length < 5) {
                                     return "Password must have 5 characters minimum";
                                   }
+
                                   return null;
                                 },
                               ),
@@ -133,18 +134,18 @@ class _LoginState extends State<Login> {
                                                   passController.text.trim(),
                                           orElse: () => null!);
 
-                                      if (loggedInUser != null) {
+                                      if (loggedInUser == null) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(const SnackBar(
+                                                content: Text(
+                                                    'Data pengguna tidak ditemukan!')));
+                                      } else {
                                         LoginData().setLoginData(
                                             loggedInUser.name,
                                             loggedInUser.username,
                                             loggedInUser.password);
-                                        Navigator.pushReplacementNamed(context,
-                                            '/home'); //Unfinished Navigation
-                                      } else {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(const SnackBar(
-                                                content: Text(
-                                                    'User data is not found!')));
+                                        Navigator.pushReplacementNamed(
+                                            context, '/home');
                                       }
                                     }
                                   },

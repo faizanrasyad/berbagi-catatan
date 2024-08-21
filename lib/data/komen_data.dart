@@ -10,5 +10,7 @@ class KomenData {
 
   KomenData._internal();
 
-  List<Komen> komen = [];
+  List<Komen> komen = [
+    Komen(catatanId: 1, author: 'Jelita', komen: 'Gantenk :)')
+  ];
 }

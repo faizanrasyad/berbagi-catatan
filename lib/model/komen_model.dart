@@ -1,5 +1,7 @@
+import 'dart:ffi';
+
 class Komen {
-  String catatanId;
+  int catatanId;
   String author;
   String komen;
 
