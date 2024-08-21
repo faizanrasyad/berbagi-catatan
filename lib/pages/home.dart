@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
           Navigator.pushNamed(context, '/buat');
         },
         child: Icon(
-          Icons.add,
+          Icons.note_add,
           color: Colors.white,
           size: 35,
         ),
@@ -73,7 +73,20 @@ class _HomeState extends State<Home> {
                         radius: 20,
                         backgroundColor: Warna().green100,
                         child: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            PopupMenuButton(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(100),
+                              ),
+                              onSelected: (value) {},
+                              itemBuilder: (BuildContext context) =>
+                                  <PopupMenuEntry>[
+                                PopupMenuItem(
+                                  child: Row(),
+                                )
+                              ],
+                            );
+                          },
                           icon: Icon(
                             Icons.sort,
                             color: Colors.white,
@@ -83,7 +96,9 @@ class _HomeState extends State<Home> {
                     ],
                   )
                 ],
-              )
+              ),
+              Expanded(
+                  child: ListView.builder(itemBuilder: (context, index) {})),
             ],
           ),
         ),
