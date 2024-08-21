@@ -12,6 +12,7 @@ class CatatanData {
 
   List<Catatan> catatan = [
     Catatan(
+        id: 1,
         judul: 'Dimensi Tiga',
         deskripsi: 'Materi dimensi tiga matematika kelas 12',
         kategori: 'Matematika',

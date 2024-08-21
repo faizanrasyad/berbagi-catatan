@@ -1,4 +1,5 @@
 class Catatan {
+  int id;
   String judul;
   String deskripsi;
   String kategori;
@@ -7,7 +8,8 @@ class Catatan {
   String kelas;
 
   Catatan(
-      {required this.judul,
+      {required this.id,
+      required this.judul,
       required this.deskripsi,
       required this.kategori,
       required this.gambar,
