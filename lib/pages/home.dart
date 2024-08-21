@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:berbagi_catatan/data/catatan_data.dart';
 import 'package:berbagi_catatan/data/login_data.dart';
 import 'package:berbagi_catatan/model/catatan_model.dart';
+import 'package:berbagi_catatan/pages/detail_catatan.dart';
 import 'package:berbagi_catatan/resources/color.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -121,7 +122,12 @@ class _HomeState extends State<Home> {
                       itemBuilder: (context, index) {
                         return InkWell(
                           onTap: () {
-                            Navigator.pushNamed(context, '/detail');
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => DetailCatatan(
+                                          catatan: filteredCatatan[index],
+                                        )));
                           },
                           child: Container(
                             margin: const EdgeInsets.symmetric(vertical: 16),

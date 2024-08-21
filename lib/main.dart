@@ -1,7 +1,7 @@
 import 'package:berbagi_catatan/pages/buat_catatan.dart';
 import 'package:berbagi_catatan/pages/cari_catatan.dart';
 import 'package:berbagi_catatan/pages/home.dart';
-import 'package:berbagi_catatan/pages/lihat_catatan.dart';
+import 'package:berbagi_catatan/pages/detail_catatan.dart';
 import 'package:berbagi_catatan/pages/login.dart';
 import 'package:berbagi_catatan/pages/register.dart';
 import 'package:berbagi_catatan/pages/splash_screen.dart';
@@ -17,7 +17,6 @@ void main() {
       '/register': (context) => Register(),
       '/home': (context) => Home(),
       '/buat': (context) => BuatCatatan(),
-      '/detail': (context) => DetailCatatan(),
       '/cari': (context) => CariCatatan()
     },
     debugShowCheckedModeBanner: false,

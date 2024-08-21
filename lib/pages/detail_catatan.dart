@@ -1,7 +1,9 @@
+import 'package:berbagi_catatan/model/catatan_model.dart';
 import 'package:flutter/material.dart';
 
 class DetailCatatan extends StatefulWidget {
-  const DetailCatatan({super.key});
+  final Catatan catatan;
+  const DetailCatatan({super.key, required this.catatan});
 
   @override
   State<DetailCatatan> createState() => _DetailCatatanState();
