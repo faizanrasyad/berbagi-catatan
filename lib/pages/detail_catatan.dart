@@ -48,7 +48,7 @@ class _DetailCatatanState extends State<DetailCatatan> {
                   children: [
                     IconButton(
                       onPressed: () {
-                        Navigator.pushReplacementNamed(context, '/home');
+                        Navigator.pop(context);
                       },
                       icon: Icon(
                         Icons.arrow_back_ios,

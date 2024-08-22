@@ -29,7 +29,9 @@ class _BuatCatatanState extends State<BuatCatatan> {
               Row(
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     icon: Icon(
                       Icons.arrow_back_ios,
                       color: Colors.black,
@@ -63,19 +65,59 @@ class _BuatCatatanState extends State<BuatCatatan> {
                         padding: EdgeInsets.only(top: 8, bottom: 16),
                         child: TextFormField(
                           controller: judulController,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                               border: OutlineInputBorder(),
                               hintText: 'Masukkan judul catatan...',
                               hintStyle: TextStyle(
                                 fontWeight: FontWeight.normal,
                               ),
-                              prefixIcon: Icon(Icons.tag)),
+                              prefixIcon: Icon(
+                                Icons.flag,
+                                color: Warna().green100,
+                              )),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return "Judul can't be empty";
                             }
                             return null;
                           },
+                        ),
+                      ),
+                      Text(
+                        'Gambar Catatan',
+                        style: TextStyle(color: Colors.grey, fontSize: 14),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8, bottom: 16),
+                        child: InkWell(
+                          onTap: () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('OTW Upload')));
+                          },
+                          child: Container(
+                            height: 200,
+                            width: 110,
+                            decoration: BoxDecoration(
+                              color: Warna().lightGrey,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.add,
+                                  color: Colors.grey,
+                                  size: 30,
+                                ),
+                                Text(
+                                  'Unggah Gambar Catatan',
+                                  style: TextStyle(color: Colors.grey),
+                                  textAlign: TextAlign.center,
+                                )
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                       Text(
@@ -102,18 +144,22 @@ class _BuatCatatanState extends State<BuatCatatan> {
                         ),
                       ),
                       Text(
-                        'Kategori Catatan',
+                        'Tags Catatan',
                         style: TextStyle(color: Colors.grey, fontSize: 14),
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 8, bottom: 16),
                         child: TextFormField(
                           controller: katController,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                               border: OutlineInputBorder(),
-                              labelText: 'Kategori',
-                              hintText: 'Pilih kategori catatan...',
-                              prefixIcon: Icon(Icons.person)),
+                              hintText: 'Ketikkan tags (ex. Matematika)',
+                              hintStyle:
+                                  TextStyle(fontWeight: FontWeight.normal),
+                              prefixIcon: Icon(
+                                Icons.tag,
+                                color: Warna().green100,
+                              )),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return "Judul can't be empty";
@@ -129,12 +175,18 @@ class _BuatCatatanState extends State<BuatCatatan> {
                       Padding(
                         padding: EdgeInsets.only(top: 8, bottom: 16),
                         child: TextFormField(
+                          maxLength: 2,
+                          keyboardType: TextInputType.number,
                           controller: kelasController,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                               border: OutlineInputBorder(),
-                              labelText: 'Kelas',
-                              hintText: 'Pilih kelas...',
-                              prefixIcon: Icon(Icons.person)),
+                              hintText: 'Ketikkan kelas (ex. 12)',
+                              hintStyle:
+                                  TextStyle(fontWeight: FontWeight.normal),
+                              prefixIcon: Icon(
+                                Icons.school,
+                                color: Warna().green100,
+                              )),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return "Judul can't be empty";
@@ -143,6 +195,34 @@ class _BuatCatatanState extends State<BuatCatatan> {
                           },
                         ),
                       ),
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 50, vertical: 8),
+                        child: Center(
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.cloud_upload),
+                                  const SizedBox(
+                                    width: 8,
+                                  ),
+                                  Text(
+                                    'Unggah Catatan',
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                ]),
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Warna().green100,
+                                foregroundColor: Colors.white,
+                                minimumSize: Size(150, 50)),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 50,
+                      )
                     ],
                   )),
                 ),
