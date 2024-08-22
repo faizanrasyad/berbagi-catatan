@@ -91,7 +91,10 @@ class CariCatatanState extends State<CariCatatan> {
                   padding: EdgeInsets.symmetric(vertical: 16),
                   child: query.isEmpty || filteredCatatan.isEmpty
                       ? Center(
-                          child: Text('Tidak ada catatan'),
+                          child: Text(
+                            'Tidak ada catatan',
+                            style: TextStyle(color: Colors.grey, fontSize: 16),
+                          ),
                         )
                       : ListView.builder(
                           itemCount: filteredCatatan.length,
@@ -164,27 +167,6 @@ class CariCatatanState extends State<CariCatatan> {
                                                     fontSize: 16,
                                                     color: Warna().green100),
                                               ),
-                                            )
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 8,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Icon(
-                                              Icons.bookmark,
-                                              size: 18,
-                                              color: Colors.black,
-                                            ),
-                                            SizedBox(
-                                              width: 4,
-                                            ),
-                                            Text(
-                                              "${filteredCatatan[index].kategori}",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 16),
                                             )
                                           ],
                                         ),

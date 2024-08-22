@@ -17,7 +17,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   String? name = LoginData().getName();
-
+  String kelas = '0';
   List<Catatan> filteredCatatan = [];
 
   @override
@@ -27,9 +27,13 @@ class _HomeState extends State<Home> {
     filteredCatatan = CatatanData().catatan;
   }
 
-  void search() {}
-
-  void filter() {}
+  void filter(String kelas) {
+    this.kelas = kelas;
+    filteredCatatan = CatatanData()
+        .catatan
+        .where((element) => element.kelas == kelas)
+        .toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,154 +93,169 @@ class _HomeState extends State<Home> {
                         width: 8,
                       ),
                       CircleAvatar(
-                        radius: 20,
-                        backgroundColor: Warna().green100,
-                        child: IconButton(
-                          onPressed: () {
-                            PopupMenuButton(
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(100),
+                          radius: 20,
+                          backgroundColor: Warna().green100,
+                          child: PopupMenuButton<String>(
+                            child: Icon(
+                              Icons.sort,
+                              color: Colors.white,
+                            ),
+                            itemBuilder: (context) => [
+                              PopupMenuItem(
+                                value: '0',
+                                child: Text(
+                                  'Semua',
+                                  style: TextStyle(color: Warna().green100),
+                                ),
                               ),
-                              onSelected: (value) {},
-                              itemBuilder: (BuildContext context) =>
-                                  <PopupMenuEntry>[
-                                PopupMenuItem(
-                                  child: Row(),
-                                )
-                              ],
-                            );
-                          },
-                          icon: Icon(
-                            Icons.sort,
+                              PopupMenuItem(
+                                value: '10',
+                                child: Text(
+                                  'Kelas 10',
+                                  style: TextStyle(color: Warna().green100),
+                                ),
+                              ),
+                              PopupMenuItem(
+                                value: '11',
+                                child: Text(
+                                  'Kelas 11',
+                                  style: TextStyle(color: Warna().green100),
+                                ),
+                              ),
+                              PopupMenuItem(
+                                value: '12',
+                                child: Text(
+                                  'Kelas 12',
+                                  style: TextStyle(color: Warna().green100),
+                                ),
+                              ),
+                            ],
                             color: Colors.white,
-                          ),
-                        ),
-                      ),
+                            elevation: 2,
+                            onSelected: (value) {
+                              if (value != '0') {
+                                filter(value);
+                              } else {
+                                filteredCatatan = CatatanData().catatan;
+                              }
+
+                              setState(() {});
+                            },
+                          )),
                     ],
                   )
                 ],
               ),
               Expanded(
-                  child: ListView.builder(
-                      itemCount: filteredCatatan.length,
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => DetailCatatan(
-                                          catatan: filteredCatatan[index],
-                                        )));
-                          },
-                          child: Container(
-                            margin: const EdgeInsets.symmetric(vertical: 16),
-                            child: Row(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(12.0),
-                                  child: Image.asset(
-                                    'lib/assets/${filteredCatatan[index].gambar}',
-                                    width:
-                                        MediaQuery.of(context).size.width * .30,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 16,
-                                ),
-                                Flexible(
-                                    child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                  child: filteredCatatan.isEmpty
+                      ? const Center(
+                          child: Text(
+                            'Tidak ada catatan',
+                            style: TextStyle(fontSize: 16, color: Colors.grey),
+                          ),
+                        )
+                      : ListView.builder(
+                          itemCount: filteredCatatan.length,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => DetailCatatan(
+                                              catatan: filteredCatatan[index],
+                                            )));
+                              },
+                              child: Container(
+                                margin:
+                                    const EdgeInsets.symmetric(vertical: 16),
+                                child: Row(
                                   children: [
-                                    Container(
-                                      padding:
-                                          const EdgeInsets.only(right: 4.0),
-                                      child: Text(
-                                        filteredCatatan[index].judul,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 20),
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(12.0),
+                                      child: Image.asset(
+                                        'lib/assets/${filteredCatatan[index].gambar}',
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                .30,
                                       ),
                                     ),
                                     const SizedBox(
-                                      height: 8,
+                                      width: 16,
                                     ),
-                                    Row(
+                                    Flexible(
+                                        child: Column(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Icon(
-                                          Icons.person,
-                                          size: 18,
-                                          color: Warna().green100,
-                                        ),
-                                        const SizedBox(
-                                          width: 4,
-                                        ),
                                         Container(
                                           padding:
                                               const EdgeInsets.only(right: 4.0),
                                           child: Text(
-                                            "${filteredCatatan[index].author}",
+                                            filteredCatatan[index].judul,
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w600,
-                                                fontSize: 16,
-                                                color: Warna().green100),
+                                                fontSize: 20),
                                           ),
-                                        )
+                                        ),
+                                        const SizedBox(
+                                          height: 8,
+                                        ),
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.person,
+                                              size: 18,
+                                              color: Warna().green100,
+                                            ),
+                                            const SizedBox(
+                                              width: 4,
+                                            ),
+                                            Container(
+                                              padding: const EdgeInsets.only(
+                                                  right: 4.0),
+                                              child: Text(
+                                                "${filteredCatatan[index].author}",
+                                                overflow: TextOverflow.ellipsis,
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 16,
+                                                    color: Warna().green100),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 8,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.school,
+                                              size: 18,
+                                              color: Colors.black,
+                                            ),
+                                            SizedBox(
+                                              width: 4,
+                                            ),
+                                            Text(
+                                              "Kelas ${filteredCatatan[index].kelas}",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 16),
+                                            )
+                                          ],
+                                        ),
                                       ],
-                                    ),
-                                    const SizedBox(
-                                      height: 8,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.bookmark,
-                                          size: 18,
-                                          color: Colors.black,
-                                        ),
-                                        SizedBox(
-                                          width: 4,
-                                        ),
-                                        Text(
-                                          "${filteredCatatan[index].kategori}",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 16),
-                                        )
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 8,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.school,
-                                          size: 18,
-                                          color: Colors.black,
-                                        ),
-                                        SizedBox(
-                                          width: 4,
-                                        ),
-                                        Text(
-                                          "Kelas ${filteredCatatan[index].kelas}",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 16),
-                                        )
-                                      ],
-                                    ),
+                                    ))
                                   ],
-                                ))
-                              ],
-                            ),
-                          ),
-                        );
-                      })),
+                                ),
+                              ),
+                            );
+                          })),
             ],
           ),
         ),
