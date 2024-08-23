@@ -15,21 +15,14 @@ class UserReq {
     String password,
   ) async {
     try {
-      print('MASUK REQUEST LOGIN TRY');
-      print("USERNAME: $username");
-      print("RESPONSE MULAI");
       final response = await ApiService.instance.request(
           'login', DioMethod.postLogin,
           param: {'username': username, 'password': password},
           contentType: 'application/json');
-      print("RESPONSE SELESAI");
-      print('RESPON CODE: ${response.statusCode}');
 
       if (response.statusCode == 200) {
-        print('API call success: ${response.data}');
         var responseBody = response.data;
-        print("RESPONSE BODY: $responseBody");
-        print("RESPONSE BODY NAME: ${responseBody['name']}");
+
         user = UserDatabase(
             id: responseBody['id'],
             name: responseBody['name'],
@@ -37,10 +30,7 @@ class UserReq {
             password: responseBody['password']);
         LoginData().setLoginData(responseBody['name'], responseBody['username'],
             responseBody['password']);
-        print("USER's NAME: ${LoginData().name}");
       }
-
-      print('API call failed: ${response.statusMessage}');
     } catch (e) {
       throw Exception('Network Error Occured: $e');
     }

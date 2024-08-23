@@ -134,8 +134,7 @@ class _LoginState extends State<Login> {
                                             .showSnackBar(SnackBar(
                                                 content: Text(
                                                     'Berhasil Login!! => ${UserReq().user?.name}')));
-                                        print(
-                                            "USER'S NAME AFTER LOGIN: ${LoginData().name}");
+
                                         Navigator.pushNamed(context, '/home');
                                       }
                                     }
