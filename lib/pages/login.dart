@@ -1,5 +1,6 @@
 import 'package:berbagi_catatan/data/login_data.dart';
 import 'package:berbagi_catatan/data/user_data.dart';
+import 'package:berbagi_catatan/database/requests/user_req.dart';
 import 'package:berbagi_catatan/model/user_model.dart';
 import 'package:berbagi_catatan/resources/color.dart';
 import 'package:flutter/material.dart';
@@ -124,28 +125,18 @@ class _LoginState extends State<Login> {
                                 child: ElevatedButton(
                                   onPressed: () {
                                     if (formKey.currentState!.validate()) {
-                                      List<User> users = UserData().users;
+                                      UserReq().requestLogin(
+                                          userController.text,
+                                          passController.text);
 
-                                      User? loggedInUser = users.firstWhere(
-                                          (user) =>
-                                              user.username ==
-                                                  userController.text.trim() &&
-                                              user.password ==
-                                                  passController.text.trim(),
-                                          orElse: () => null!);
-
-                                      if (loggedInUser == null) {
+                                      if (LoginData().name != null) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(SnackBar(
                                                 content: Text(
-                                                    'Data pengguna tidak ditemukan!')));
-                                      } else {
-                                        LoginData().setLoginData(
-                                            loggedInUser.name,
-                                            loggedInUser.username,
-                                            loggedInUser.password);
-                                        Navigator.pushReplacementNamed(
-                                            context, '/home');
+                                                    'Berhasil Login!! => ${UserReq().user?.name}')));
+                                        print(
+                                            "USER'S NAME AFTER LOGIN: ${LoginData().name}");
+                                        Navigator.pushNamed(context, '/home');
                                       }
                                     }
                                   },

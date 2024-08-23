@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:berbagi_catatan/data/catatan_data.dart';
 import 'package:berbagi_catatan/data/login_data.dart';
+import 'package:berbagi_catatan/database/requests/user_req.dart';
 import 'package:berbagi_catatan/model/catatan_model.dart';
 import 'package:berbagi_catatan/pages/detail_catatan.dart';
 import 'package:berbagi_catatan/resources/color.dart';
@@ -66,7 +67,7 @@ class _HomeState extends State<Home> {
                         width: 16,
                       ),
                       Text(
-                        'Hi, ${LoginData().getName()}',
+                        'Hi, ${LoginData().name}',
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
