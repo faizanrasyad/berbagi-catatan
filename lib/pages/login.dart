@@ -136,7 +136,7 @@ class _LoginState extends State<Login> {
 
                                       if (loggedInUser == null) {
                                         ScaffoldMessenger.of(context)
-                                            .showSnackBar(const SnackBar(
+                                            .showSnackBar(SnackBar(
                                                 content: Text(
                                                     'Data pengguna tidak ditemukan!')));
                                       } else {

@@ -66,7 +66,7 @@ class _HomeState extends State<Home> {
                         width: 16,
                       ),
                       Text(
-                        'Hi ${LoginData().getName()}',
+                        'Hi, ${LoginData().getName()}',
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,

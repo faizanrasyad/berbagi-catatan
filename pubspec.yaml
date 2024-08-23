@@ -10,6 +10,9 @@ dependencies:
   flutter:
     sdk: flutter
   smooth_page_indicator: ^1.2.0+3
+  image_picker: ^1.1.2
+  path_provider: ^2.0.7
+  path: ^1.8.1
 
 dev_dependencies:
   flutter_test:
@@ -20,7 +23,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "lib/assets/icon.png"
+  image_path: "lib/assets/icon.jpg"
 
 flutter:
   uses-material-design: true

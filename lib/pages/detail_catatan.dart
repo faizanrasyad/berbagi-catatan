@@ -34,6 +34,14 @@ class _DetailCatatanState extends State<DetailCatatan> {
     gambarList = GambarData().gambar;
   }
 
+  void deleteKomen(int index) {
+    setState(() {
+      Komen removedKomen = komenList[index];
+      KomenData().komen.remove(removedKomen);
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Catatan catatan = widget.catatan;
@@ -248,38 +256,74 @@ class _DetailCatatanState extends State<DetailCatatan> {
                                           vertical: 8),
                                       child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
-                                          CircleAvatar(
-                                            backgroundColor: Warna().green100,
-                                            child: Icon(
-                                              Icons.person,
-                                              size: 18,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 16,
-                                          ),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                          Row(
                                             children: [
-                                              Text(
-                                                komenList[index].author,
-                                                overflow: TextOverflow.ellipsis,
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Warna().green100,
-                                                  fontSize: 16,
+                                              CircleAvatar(
+                                                backgroundColor:
+                                                    Warna().green100,
+                                                child: Icon(
+                                                  Icons.person,
+                                                  size: 18,
+                                                  color: Colors.white,
                                                 ),
                                               ),
                                               const SizedBox(
-                                                height: 4,
+                                                width: 16,
                                               ),
-                                              Text(komenList[index].komen)
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    komenList[index].author,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color: Warna().green100,
+                                                      fontSize: 16,
+                                                    ),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 4,
+                                                  ),
+                                                  Text(komenList[index].komen)
+                                                ],
+                                              ),
                                             ],
                                           ),
+                                          PopupMenuButton<int>(
+                                              itemBuilder: (context) => [
+                                                    PopupMenuItem(
+                                                        value: 1,
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Icon(
+                                                              Icons.delete,
+                                                              color: Colors.red,
+                                                            ),
+                                                            const SizedBox(
+                                                              width: 8,
+                                                            ),
+                                                            Text(
+                                                              'Hapus',
+                                                            )
+                                                          ],
+                                                        )),
+                                                  ],
+                                              color: Colors.white,
+                                              elevation: 2,
+                                              onSelected: (value) {
+                                                if (value == 1) {
+                                                  deleteKomen(index);
+                                                }
+                                              }),
                                         ],
                                       ),
                                     );
